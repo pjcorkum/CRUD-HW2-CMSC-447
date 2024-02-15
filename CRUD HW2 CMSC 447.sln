@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CRUD HW2 CMSC 447", "CRUD HW2 CMSC 447\CRUD HW2 CMSC 447.pyproj", "{C56063B3-7F85-4E32-B206-B4FB8BBECB48}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C56063B3-7F85-4E32-B206-B4FB8BBECB48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C56063B3-7F85-4E32-B206-B4FB8BBECB48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C56063B3-7F85-4E32-B206-B4FB8BBECB48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C56063B3-7F85-4E32-B206-B4FB8BBECB48}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98338B92-4C8B-43C8-9C32-86E384AC864F}
+	EndGlobalSection
+EndGlobal
