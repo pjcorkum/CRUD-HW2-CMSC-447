@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
     <script src="/static/scripts/modernizr-2.6.2.js"></script>
+    <script src="/static/scripts/calls.js"></script>
 </head>
 
 <body>
@@ -18,17 +19,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="navbar-brand">Application name</a>
+                <a href="/" class="navbar-brand">CRUD</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('home') }}">Home</a></li>
                     <li><a href="{{ url_for('create') }}">Create New User</a></li>
                     <li><a href="{{ url_for('search') }}">Search/Edit</a></li>
-                    <li><a href="{{ url_for('display') }}">Display Users</a></li>
+                    <li><a id="displayButton" href="{{ url_for('display') }}">Display Users</a></li>
                 </ul>
+                <a class="btn btn-danger pull-right" style="margin-top:8px" id="resetButton">Drop Table</a>
             </div>
         </div>
+    </div>
+    <div class="alert alert-success invisible" id="successfulDropAlert" role="alert">
+        Succesfully dropped table!
     </div>
 
     <div class="container body-content">

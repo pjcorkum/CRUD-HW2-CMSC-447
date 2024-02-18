@@ -17,6 +17,8 @@
     <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
     <Name>CRUD HW2 CMSC 447</Name>
     <RootNamespace>CRUD HW2 CMSC 447</RootNamespace>
+    <WebBrowserPort>5555</WebBrowserPort>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -27,6 +29,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CRUD_HW2_CMSC_447\buttons.py" />
+    <Compile Include="CRUD_HW2_CMSC_447\databaseapi.py" />
     <Compile Include="runserver.py" />
     <Compile Include="CRUD_HW2_CMSC_447\__init__.py" />
     <Compile Include="CRUD_HW2_CMSC_447\views.py" />
@@ -40,6 +44,9 @@
     <Folder Include="CRUD_HW2_CMSC_447\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CRUD_HW2_CMSC_447\static\scripts\calls.js" />
+    <Content Include="CRUD_HW2_CMSC_447\static\scripts\create.js" />
+    <Content Include="CRUD_HW2_CMSC_447\static\scripts\display.js" />
     <Content Include="CRUD_HW2_CMSC_447\templates\create.html" />
     <Content Include="CRUD_HW2_CMSC_447\templates\display.html" />
     <Content Include="CRUD_HW2_CMSC_447\templates\search.html" />
@@ -70,6 +77,17 @@
     <Content Include="CRUD_HW2_CMSC_447\templates\layout.html" />
     <Content Include="sqlite3.def" />
     <Content Include="sqlite3.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>env</Id>
+      <Version>0.0</Version>
+      <Description>env (Python 3.12 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
+<script src="/static/scripts/create.js"></script>
 <div class="jumbotron">
     <h1>Search/Edit</h1>
     <p class="lead">Flask is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
@@ -10,19 +10,17 @@
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p><a class="btn btn-default" href="http://flask.pocoo.org/docs/">Learn more &raquo;</a></p>
+        <h2>ID</h2>
+        <input type="text" name="idfield" id="idfield_create" placeholder="Enter an ID"><br>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>The Python Package Index is a repository of software for the Python programming language.</p>
-        <p><a class="btn btn-default" href="https://pypi.python.org/pypi">Learn more &raquo;</a></p>
+        <h2>Name</h2>
+        <input type="text" name="namefield" id="namefield_create" placeholder="Enter a Name"><br>
     </div>
     <div class="col-md-4">
-        <h2>Microsoft Azure</h2>
-        <p>You can easily publish to Microsoft Azure using Visual Studio. Find out how you can host your application using a free trial today.</p>
-        <p><a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></p>
+        <h2>Points</h2>
+        <input type="text" name="pointsfield" id="pointsfield_create" placeholder="Enter Points"><br>
     </div>
 </div>
-
+<a class="btn btn-default" style="margin-top:8px" id="createEntryButton">Create User</a>
 {% endblock %}
