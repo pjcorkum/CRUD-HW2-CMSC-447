@@ -44,9 +44,11 @@
     <Folder Include="CRUD_HW2_CMSC_447\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CRUD_HW2_CMSC_447\static\content\bootstrap.css.map" />
     <Content Include="CRUD_HW2_CMSC_447\static\scripts\calls.js" />
     <Content Include="CRUD_HW2_CMSC_447\static\scripts\create.js" />
     <Content Include="CRUD_HW2_CMSC_447\static\scripts\display.js" />
+    <Content Include="CRUD_HW2_CMSC_447\static\scripts\search.js" />
     <Content Include="CRUD_HW2_CMSC_447\templates\create.html" />
     <Content Include="CRUD_HW2_CMSC_447\templates\display.html" />
     <Content Include="CRUD_HW2_CMSC_447\templates\search.html" />

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} - My Flask Application</title>
+    <title>{{ title }} - CMSC 447 CRUD Application</title>
     <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
     <script src="/static/scripts/modernizr-2.6.2.js"></script>
@@ -11,36 +11,27 @@
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="/" class="navbar-brand">CRUD</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
-                    <li><a href="{{ url_for('create') }}">Create New User</a></li>
-                    <li><a href="{{ url_for('search') }}">Search/Edit</a></li>
-                    <li><a id="displayButton" href="{{ url_for('display') }}">Display Users</a></li>
+    <nav class="navbar navbar-sticky-top align-items-center navbar-expand-lg bg-body-tertiary">
+        <div class="container justify-content-center">
+            <a href="/" class="navbar-brand">CRUD</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('home') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ url_for('create') }}">Create New User</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('search') }}">Search/Edit</a></li>
+                    <li class="nav-item"><a class="nav-link" id="displayButton" href="{{ url_for('display') }}">Display Users</a></li>
                 </ul>
-                <a class="btn btn-danger pull-right" style="margin-top:8px" id="resetButton">Drop Table</a>
+                <a class="btn btn-danger" id="resetButton">Drop Table</a>
             </div>
         </div>
-    </div>
-    <div class="alert alert-success invisible" id="successfulDropAlert" role="alert">
-        Succesfully dropped table!
-    </div>
+    </nav>
+    <div id="succesfullyDroppedPlaceholder"></div>
 
     <div class="container body-content">
         {% block content %}{% endblock %}
         <hr />
         <footer>
-            <p>&copy; {{ year }} - My Flask Application</p>
+            <p>{{ year }} - CMSC 447 CRUD Application</p>
         </footer>
     </div>
 

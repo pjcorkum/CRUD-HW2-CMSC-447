@@ -1,5 +1,12 @@
+const baseurl = 'http://localhost:5555/database';
+
 document.addEventListener('DOMContentLoaded', function () {
-    const baseurl = 'http://localhost:5555/database';
+    //document.getElementById('resetButton').addEventListener('click', function () {update_table() });
+    document.getElementById('tableLoadingSpinner').remove();
+    update_table();
+});
+
+function update_table() {
     fetch(baseurl + '/gettable')
         .then(response => response.json())
         .then(data => {
@@ -40,4 +47,4 @@ document.addEventListener('DOMContentLoaded', function () {
             tableContainer.appendChild(table);
         })
         .catch(error => console.error('Error fetching table:', error));
-});
+}

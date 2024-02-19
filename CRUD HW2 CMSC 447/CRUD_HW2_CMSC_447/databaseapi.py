@@ -47,9 +47,12 @@ def create_entry():
 def get_table():
     db = get_db()
     cursor = db.cursor()
-    cursor.execute('SELECT * FROM users')
+    cursor.execute('''SELECT * FROM users''')
     results = cursor.fetchall()
-    return results, 200
+    if (results):
+        return results, 200
+    else:
+        return "Error Table Empty", 404
 
 @app.route(BASEURL + '/droptable', methods=['POST'])
 def drop_table():
@@ -60,6 +63,16 @@ def drop_table():
     create_table()
     return "Table Succesfully Dropped", 200
 
+@app.route(BASEURL + '/getuserid/<userid>')
+def get_user_id(userid):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute('''SELECT * FROM users WHERE id = ?''', (userid))
+    results = cursor.fetchall()
+    if(results):
+        return results, 200
+    else:
+        return "Error no user found", 404
 
 
 def get_entry():

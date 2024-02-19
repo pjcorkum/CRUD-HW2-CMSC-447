@@ -13,15 +13,29 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 console.log(data);
-                if (data.success) {
-                    alert = document.getElementById('succesfulDropAlert');
-                    alert.classList.remove('invisible');
-                    print("success");
-                } else {
-                    alert = document.getElementById('failedDropAlert');
-                    alert.classlist.remove('invisible');
+                const alert = document.getElementById('succesfulDropAlert');
+                alert.style.display.replace = 'none';
+                const table = document.getElementById('tableContainer');
+                if (table) {
+                    table.innerHTML = '';
                 }
             })
             .catch(error => console.error('Error:', error));
+      
+        appendAlert('Nice, you triggered this alert message!', 'success')
     });
+    const alertPlaceholder = document.getElementById('succesfullyDroppedPlaceholder');
+    const appendAlert = (message, type) => {
+        const wrapper = document.createElement('div')
+        wrapper.innerHTML = [
+            `<div class="alert alert-${type} alert-dismissible" id="succesfullyDroppedAlert" role="alert">`,
+            `   <div>${message}</div>`,
+            '   <button type="button" class="btn-close" id="closeAlertButton" data-bs-dismiss="alert" aria-label="Close"></button>',
+            '</div>'
+        ].join('');
+        alertPlaceholder.appendChild(wrapper);
+        document.getElementById('closeAlertButton').addEventListener('click', function () {
+            document.getElementById('succesfullyDroppedAlert').remove();
+        })
+    }
 });
