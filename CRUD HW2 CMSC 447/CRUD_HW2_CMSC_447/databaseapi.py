@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 import sqlite3
 from sre_constants import SUCCESS
 from flask import g, jsonify
@@ -73,6 +74,19 @@ def get_user_id(userid):
         return results, 200
     else:
         return "Error no user found", 404
+
+@app.route(BASEURL + '/deleteuserid/<userid>', methods=['POST'])
+def delete_user_id(userid):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute('''DELETE FROM users WHERE id = ?''', (userid))
+    db.commit()
+    cursor.execute('''SELECT * FROM users WHERE id = ?''', (userid))
+    results = cursor.fetchall()
+    if(results):
+        return "Failed to delete user", 500
+    else:
+        return results, 200
 
 
 def get_entry():

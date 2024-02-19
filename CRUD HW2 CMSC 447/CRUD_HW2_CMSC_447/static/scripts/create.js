@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
-        })
+            })
             .then(response => {
                 if (response.status === 422) {
                     return response.text().then(text => {
