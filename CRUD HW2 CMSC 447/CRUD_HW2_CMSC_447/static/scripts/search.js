@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => {
                 console.error('Error fetching table:', error)
                 document.getElementById('resultsLabel').innerHTML = 'No Results Found';
-                document.getElementById('tableContainer').innerHTML = '';;
+                document.getElementById('tableContainer').innerHTML = '';
             });
-    })
+    });
 });

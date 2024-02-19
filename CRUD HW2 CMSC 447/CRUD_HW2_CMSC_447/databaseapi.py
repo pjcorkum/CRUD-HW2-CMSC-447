@@ -40,8 +40,8 @@ def create_entry():
         db.commit()
     except sqlite3.IntegrityError:
         db.rollback()
-        return "Error ID already exists", 422
-    return {}, 200
+        return "Error ID already exists or invalid input", 422
+    return "Succesfully added user", 200
     
 @app.route(BASEURL + '/gettable')
 def get_table():

@@ -42,15 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 method: 'POST'
             })
                 .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    const alert = document.getElementById('succesfulDropAlert');
-                    alert.style.display.replace = 'none';
-                    const table = document.getElementById('tableContainer');
-                    if (table) {
-                        table.innerHTML = '';
-                    }
-                })
+                .then(data => console.log(data))
                 .catch(error => console.error('Error:', error));
             const tableContainer = document.getElementById('tableContainer');
             if (tableContainer) {
