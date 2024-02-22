@@ -68,7 +68,7 @@ def drop_table():
 def get_user_id(userid):
     db = get_db()
     cursor = db.cursor()
-    cursor.execute('''SELECT * FROM users WHERE id = ?''', (userid))
+    cursor.execute('''SELECT * FROM users WHERE id = ?''', (userid,))
     results = cursor.fetchall()
     if(results):
         return results, 200
@@ -79,14 +79,29 @@ def get_user_id(userid):
 def delete_user_id(userid):
     db = get_db()
     cursor = db.cursor()
-    cursor.execute('''DELETE FROM users WHERE id = ?''', (userid))
+    cursor.execute('''DELETE FROM users WHERE id = ?''', (userid,))
     db.commit()
-    cursor.execute('''SELECT * FROM users WHERE id = ?''', (userid))
+    cursor.execute('''SELECT * FROM users WHERE id = ?''', (userid,))
     results = cursor.fetchall()
     if(results):
         return "Failed to delete user", 500
     else:
         return results, 200
+
+@app.route(BASEURL + '/edituser/', methods=['POST'])
+def edit_user():
+    db = get_db()
+    cursor = db.cursor()
+    data = request.get_json()
+    originalID = data['originalID']
+    ID = data['id']
+    name = data['name']
+    points = data['pts']
+    cursor.execute('''DELETE FROM users WHERE id = ?''', (originalID,))
+    db.commit()
+    cursor.execute('''INSERT INTO users (Id, Name, Points) VALUES (?, ?, ?)''', (ID, name, points))
+    db.commit()
+    return "Succesfully added user", 200
 
 
 def get_entry():
