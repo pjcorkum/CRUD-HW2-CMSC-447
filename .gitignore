@@ -4,4 +4,4 @@
 # ignore ALL files in ANY directory named temp
 temp/
 .git/
-.vs/
+.vs/CRUD HW2 CMSC 447/
