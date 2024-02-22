@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 import sqlite3
 from sre_constants import SUCCESS
 from flask import g, jsonify
