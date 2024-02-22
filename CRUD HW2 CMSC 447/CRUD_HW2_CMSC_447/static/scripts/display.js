@@ -6,7 +6,15 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 function update_table() {
     fetch(baseurl + '/gettable')
-        .then(response => response.json())
+        .then(response => {
+            if (response.status === 404) {
+                document.getElementById('tableContainer').innerHTML = 'No Users In Table';
+                return response.text();
+            }
+            else {
+                return response.json();
+            }
+        })
         .then(data => {
             // Assuming 'data' is an array of objects
             const table = document.createElement('table');
@@ -33,6 +41,7 @@ function update_table() {
 
             // Create table body
             const tbody = document.createElement('tbody');
+            
             data.forEach(item => {
                 const row = document.createElement('tr');
                 row.id = item[0];
@@ -105,54 +114,17 @@ function saveUser(id) {
     data['name'] = document.getElementById(`namefield_edit_${id}`).value;
     data['pts'] = document.getElementById(`ptsfield_edit_${id}`).value;
     idexists = false;
-    if (id === data['id']) {
-        fetch(baseurl + '/edituser/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then(response => {
-                if (response.status === 200) {
-                    row.cells[4].innerHTML = 'Succesfully edited user';
-                    row.cells[4].style.color = 'green';
-                    row.cells[0].innerHTML = [id];
-                    row.cells[1].innerHTML = [data['name']];
-                    row.cells[2].innerHTML = [data['pts']];
-                    row.cells[3].innerHTML = [`<button type="button" class="btn btn-primary btn-sm" id="editButton${id}" data-item-id="${id}" data-action="edit">Edit</button>`,
-                    `<button type="button" class="btn btn-danger btn-sm" style="margin-left:5px" id="deleteButton${id}" data-item-id="${id}" data-action="delete">Delete</button>`]
-                    return response.text();
-                }
-                else {
-                    return response.text().then(text => {
-                        throw new Error(text)
-                    })
-                }
-            })
-        .then(data => console.log(data))
-        .catch(error => {
-            console.error('Error:', error);
-            row.cells[4].innerHTML = 'Error editing user'
-            row.cells[4].style.color = 'red';
-        });
-        
+    if (data['id'] == '') {
+        row.cells[4].innerHTML = 'Error Empty ID Field';
+        row.cells[4].style.color = 'red';
+    } else if (data['name'].trim() == '') {
+        row.cells[4].innerHTML = 'Error Empty Name Field';
+        row.cells[4].style.color = 'red';
+    } else if (data['pts'] == '') {
+        row.cells[4].innerHTML = 'Error Empty Points Field';
+        row.cells[4].style.color = 'red';
     } else {
-        fetch(baseurl + '/getuserid/' + data['id'])
-            .then(response => {
-                if (response.ok) {
-                    idexists = true;
-                    return response.json();
-                } else {
-                    return response.json();
-                }
-            })
-            .then(data => console.log(data))
-            .catch(error => console.error(error));
-        if (idexists) {
-            row.cells[4].innerHTML = 'Error can\'t set id, user with id already exists';
-            row.cells[4].style.color = 'red';
-        } else {
+        if (id === data['id']) {
             fetch(baseurl + '/edituser/', {
                 method: 'POST',
                 headers: {
@@ -160,14 +132,62 @@ function saveUser(id) {
                 },
                 body: JSON.stringify(data)
             })
-                .then(response => response.text())
-                .then(data =>  console.log(data))
+                .then(response => {
+                    if (response.status === 200) {
+                        row.cells[4].innerHTML = 'Succesfully edited user';
+                        row.cells[4].style.color = 'green';
+                        row.cells[0].innerHTML = [id];
+                        row.cells[1].innerHTML = [data['name']];
+                        row.cells[2].innerHTML = [data['pts']];
+                        row.cells[3].innerHTML = [`<button type="button" class="btn btn-primary btn-sm" id="editButton${id}" data-item-id="${id}" data-action="edit">Edit</button>`,
+                        `<button type="button" class="btn btn-danger btn-sm" style="margin-left:5px" id="deleteButton${id}" data-item-id="${id}" data-action="delete">Delete</button>`]
+                        return response.text();
+                    }
+                    else {
+                        return response.text().then(text => {
+                            throw new Error(text)
+                        })
+                    }
+                })
+                .then(data => console.log(data))
                 .catch(error => {
                     console.error('Error:', error);
                     row.cells[4].innerHTML = 'Error editing user'
                     row.cells[4].style.color = 'red';
                 });
-            window.location.reload();
+
+        } else {
+            fetch(baseurl + '/getuserid/' + data['id'])
+                .then(response => {
+                    if (response.ok) {
+                        idexists = true;
+                        return response.json();
+                    } else {
+                        return response.json();
+                    }
+                })
+                .then(data => console.log(data))
+                .catch(error => console.error(error));
+            if (idexists) {
+                row.cells[4].innerHTML = 'Error can\'t set id, user with id already exists';
+                row.cells[4].style.color = 'red';
+            } else {
+                fetch(baseurl + '/edituser/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.text())
+                    .then(data => console.log(data))
+                    .catch(error => {
+                        console.error('Error:', error);
+                        row.cells[4].innerHTML = 'Error editing user'
+                        row.cells[4].style.color = 'red';
+                    });
+                window.location.reload();
+            }
         }
     }
 };

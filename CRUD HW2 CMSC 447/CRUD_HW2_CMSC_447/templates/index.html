@@ -3,30 +3,27 @@
 {% block content %}
 
 <div class="jumbotron">
-    <h1>Flask</h1>
-    <p class="lead">Flask is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+    <h1>CRUD Application</h1>
+    <p class="lead">CRUD is a CURD web application that uses SQLite3 to Create, Update, Read, and Display elements from a preset table.</p>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h2>Display Users</h2>
         <p>
-            Flask gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            Get started by going to the display tab to view all current entries in the table. You can also edit or delete entries here.
         </p>
-        <p><a class="btn btn-default" href="http://flask.pocoo.org/docs/">Learn more &raquo;</a></p>
+        <p><a class="btn btn-default" href="{{url_for('display')}}">Go to Display</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>The Python Package Index is a repository of software for the Python programming language.</p>
-        <p><a class="btn btn-default" href="https://pypi.python.org/pypi">Learn more &raquo;</a></p>
+        <h2>Create Users</h2>
+        <p>Create new users in the table on the create page, ID is a pkey so keep in mind that they have to be unique but don't worry we'll tell you if you enter an existing ID</p>
+        <p><a class="btn btn-default" href="{{url_for('create')}}">Go to Create</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Microsoft Azure</h2>
-        <p>You can easily publish to Microsoft Azure using Visual Studio. Find out how you can host your application using a free trial today.</p>
-        <p><a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></p>
+        <h2>Search/Edit</h2>
+        <p>You can search for specific users by ID in the Search/Edit page. You can also delete users on this page</p>
+        <p><a class="btn btn-default" href="{{url_for('search')}}">Go to Search/Edit</a></p>
     </div>
 </div>
 
