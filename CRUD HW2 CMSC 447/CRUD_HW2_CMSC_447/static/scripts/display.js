@@ -100,9 +100,9 @@ function editUser(id) {
     row = document.getElementById(id);
     username = row.cells[1].innerHTML;
     pts = row.cells[2].innerHTML;
-    row.cells[0].innerHTML = `<input type="text" style="width:50px" name="idfield" id="idfield_edit_${id}" value="${id}">`;
+    row.cells[0].innerHTML = `<input type="number" style="width:50px" name="idfield" id="idfield_edit_${id}" value="${id}">`;
     row.cells[1].innerHTML = `<input type="text" style="width:250px" name="namefield" id="namefield_edit_${id}" value="${username}">`;
-    row.cells[2].innerHTML = `<input type="text" style="width:50px" name="ptsfield" id="ptsfield_edit_${id}" value="${pts}">`;
+    row.cells[2].innerHTML = `<input type="number" style="width:50px" name="ptsfield" id="ptsfield_edit_${id}" value="${pts}">`;
     row.cells[3].innerHTML = `<button type="button" class="btn btn-primary btn-sm" id="saveButton${id}" data-item-id="${id}" data-action="save">Save</button>`;
 };
 
